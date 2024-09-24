@@ -38,14 +38,22 @@ static void xor_close( FILE *file[3] )  {
 static void xor_buf( uint64_t *a, const uint64_t *b, size_t l) {
 	size_t i;
 	l = (l + sizeof(uint64_t) - 1)/sizeof(uint64_t);	// round up, in 64-bit units
-	for( i = 0; i < l; i++ ) {
-		a[i] ^= b[i];
+	for( i = 0; i < l; i+=8 ) {
+		a[i+0] ^= b[i+0];
+		a[i+1] ^= b[i+1];
+		a[i+2] ^= b[i+2];
+		a[i+3] ^= b[i+3];
+		a[i+4] ^= b[i+4];
+		a[i+5] ^= b[i+5];
+		a[i+6] ^= b[i+6];
+		a[i+7] ^= b[i+7];
 	}
 }
 
 static int xor_write( FILE *file[3] )  {
-	uint64_t abuffer[1024/sizeof(uint64_t)];
-	uint64_t bbuffer[1024/sizeof(uint64_t)];
+#define XOR_BUF_SIZE (1024)
+	uint64_t abuffer[XOR_BUF_SIZE/sizeof(uint64_t)];
+	uint64_t bbuffer[XOR_BUF_SIZE/sizeof(uint64_t)];
 
 	unsigned a_done=0;	// don't ignore EOF, let reads from another file continue
 	unsigned b_done=0;
@@ -63,7 +71,7 @@ static int xor_write( FILE *file[3] )  {
 			memset((uint8_t*)abuffer+a_read, 0, sizeof(abuffer)-a_read);
 			memset((uint8_t*)bbuffer+b_read, 0, sizeof(bbuffer)-b_read);
 
-			xor_buf( abuffer, bbuffer, m );
+			xor_buf( abuffer, bbuffer, sizeof(abuffer) );
 
 	    	if( fwrite(abuffer, 1, m, file[2]) != m ) {
 				printf("ERROR: Failed to write %jd bytes\n", m );
