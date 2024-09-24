@@ -30,5 +30,5 @@ This means that when the input is a special file of unlimited size, such as `/de
 
 The following command creates the file `unlimited.bin`, whose contents are `file1.txt`, and then it keeps adding zeroes after that. This invocation never completes (because the end-of-file condition cannot be reached for `/dev/zero`).
 
-    $ xor -a file1.txt -b /dev/zero -o unlimited.bib    
+    $ xor -a file1.txt -b /dev/zero -o unlimited.bin   
 
