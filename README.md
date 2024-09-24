@@ -32,7 +32,7 @@ The following command creates the file `unlimited.bin`, whose contents are `file
 
     $ xor -a file1.txt -b /dev/zero -o unlimited.bin
 
-## High-performance mode
+## High-performance update mode
 
 The tool detects the update scenario and takes advantage of it as follows.
 
