@@ -26,7 +26,7 @@ The tool sets the output size equal to the size of the largest file.
 
 This means that when the input is a special file of unlimited size, such as `/dev/urandom`, the tool will never stop.  
 
-#3 Example 3
+## Example 3
 
 The following command creates the file `unlimited.bin`, whose contents are `file1.txt`, and then it keeps adding zeroes after that. This invocation never completes (because the end-of-file condition cannot be reached for `/dev/zero`).
 
