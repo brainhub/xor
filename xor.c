@@ -127,7 +127,7 @@ main (int argc, char **argv)
         return 1;
       }
 
-	printf ("input1 = %s, input2 = %s, output = %s\n", avalue, bvalue, ovalue);
+	//printf ("input1 = %s, input2 = %s, output = %s\n", avalue, bvalue, ovalue);
 
 //	for (index = optind; index < argc; index++)
 //		printf ("Non-option argument %s\n", argv[index]);
