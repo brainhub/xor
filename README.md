@@ -36,20 +36,20 @@ The following command creates the file `unlimited.bin`, whose contents are `file
 
 The tool detects the update scenario and takes advantage of it as follows.
 
-When one of input and output files satisfy the following conditions:
-    * they are regular files
-    * name of one input file matched the output file name (call is file "output" file)
-    * the size of output file is larger than the other file (call it "intput" file)
-then the output file if updated in-place.
+When one of input filed and the output file satisfy the following conditions:
+* they are regular files
+* name of one input file matched the output file name (call this file as "output" file)
+* the size of output file is larger than the other file (call this file as "intput" file)
+then the output file is updated in-place.
 
-When the input file is small, this update is an instant operation. Furthermore, some fileystems such as btrfs perform copy on write, so the following scenario performs instant masking for _arbitrary_ large files:
+When the input file is small, this update is an instant operation. Furthermore, some fileystems, such as btrfs, perform copy on write, so the following stems can perform instant masking for _arbitrary_ large files:
 
     $ cp LARGE copy
     $ xor -a LARGE -b mask -o copy
     $ diff LARGE copy
     Binary files LARGE and copy differ
     $ xor -a copy -b mask -o copy
-    # so far these are instant operations
+    # so far these are instant operations on btrfs
 
     $ diff LARGE copy && echo the same
     the same
