@@ -1,6 +1,8 @@
 .POSIX:
 CC = gcc
-CFLAGS =  -Wall -Wextra -Wpedantic -O5 -g
+
+# -static will need e.g. `dnf install glibc-static`
+CFLAGS =  -Wall -Wextra -Wpedantic -O5 -g -static
 LDFLAGS =
 LDLIBS =
 PREFIX = /usr/local
